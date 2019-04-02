@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="/styles.css" />
+  <title>Message Viewer Admin</title>
+</head>
+
+<body>
+  <div id="admin" class="content">
+    <h1>Message Viewer: Admin Page</h1>
+    <div class="heading">
+      <h2>Add an Item</h2>
+    </div>
+    <div class="add">
+      <div class="form">
+        <input v-model="id" placeholder="ID">
+        <p></p>
+        <input v-model="avatar" placeholder="Link to avatar picture">
+        <p></p>
+        <input v-model="handle" placeholder="Handle">
+        <p></p>
+        <input v-model="timestamp" placeholder="Timestamp">
+        <p></p>
+        <input v-model="source" placeholder="Source">
+        <p></p>
+        <input v-model="score" placeholder="Score">
+        <p></p>
+        <input type="checkbox" v-model="isStarred">isStarred
+        <input type="checkbox" v-model="isTrashed">isTrashed
+        <p></p>
+        <textarea v-model="content" placeholder="Content"></textarea>
+        <button @click="upload">Upload</button>
+      </div>
+      <div class="upload" v-if="addItem">
+        <h2>{{addItem.id}}</h2>
+        <img :src="findId.avatar" />
+      </div>
+    </div>
+    <div class="heading">
+      <h2>Edit/Delete an Item</h2>
+    </div>
+    <div class="edit">
+      <div class="form">
+        <input v-model="findId" placeholder="Search">
+        <div class="suggestions" v-if="suggestions.length > 0">
+          <div class="suggestion" v-for="s in suggestions" @click="selectItem(s)">{{s.id}}
+          </div>
+        </div>
+      </div>
+      <div class="upload" v-if="findItem">
+        <input v-model="findItem.id">
+        <p></p>
+        <img :src="findItem.avatar" />
+      </div>
+      <div class="actions" v-if="findItem">
+        <button @click="deleteItem(findItem)">Delete</button>
+        <button @click="editItem(findItem)">Edit</button>
+        <p></p>
+        <textarea v-model="content" placeholder="Content"></textarea>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js" integrity="sha256-mpnrJ5DpEZZkwkE1ZgkEQQJW/46CSEh/STrZKOB/qoM=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.7/vue.js" integrity="sha256-g+Q8DFAmG5+eyRPSydX0LY4TfjsL11XSDrIGerbbEdA=" crossorigin="anonymous"></script>
+  <script src="/admin.js"></script>
+</body>
+
+</html>

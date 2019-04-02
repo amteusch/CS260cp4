@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="/styles.css" />
+  <title>Message Viewer</title>
+</head>
+
+<body>
+  <div id="app">
+    <div class="header">
+      <img src="/img/assets_logo-sf-small.png" />
+      <p>MESSAGE VIEWER</p>
+    </div>
+
+  <h1>Starred: {{ starredItems }}</h1>
+  <ul>
+    <li v-for="item in items">
+        <div class="avatar">
+        <img v-bind:src="item.avatar"/>
+        <p> {{ item.handle }} </p>
+      </div>
+      <div class="tweet">
+        <p class="source">{{item.source}} | {{format_date(item.timestamp)}} </p>
+        <p>{{ item.content }}</p>
+      </div>
+      <input type="button" v-bind:class="{ 'starred': item.isStarred }" v-on:click="starItem(item)" v-bind:value="item.isStarred ? 'Starred!' : 'Star Message!'"></input>
+    </li>
+  </ul>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.7/dist/vue.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js" integrity="sha256-mpnrJ5DpEZZkwkE1ZgkEQQJW/46CSEh/STrZKOB/qoM=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js" integrity="sha256-4iQZ6BVL4qNKlQ27TExEhBN1HFPvAvAMbFavKKosSWQ=" crossorigin="anonymous"></script>
+  <script src="/script.js"></script>
+
+  <footer>
+    <div>
+      <a href="https://github.com/amteusch/CS260cp4"><img src="/img/GitHub-Mark-Light-32px.png"></a>
+      </div>
+      <a href="/admin.html">Admin</a>
+  </footer>
+
+</body>
+
+</html>
